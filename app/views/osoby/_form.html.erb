@@ -1,0 +1,68 @@
+<%= form_for(@osoba) do |f| %>
+  <% if @osoba.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@osoba.errors.count, t(:error)) %> </h2>
+
+      <ul>
+      <% @osoba.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+
+  <div class="field">
+    <%= f.label :nazwisko%><br />    
+    <%= f.text_field :nazwisko %>    
+  </div>
+  <div class="field">
+    <%= f.label :email%><br />
+    <%if defined?(disabled)%>
+      <%= f.text_field :email, :disabled=>'disabled' %>
+    <%else%>
+      <%= f.text_field :email %>
+    <%end%>
+
+  </div>
+
+  <div class="inlet_text">
+    <%=t(:temporary_password)%>
+  </div>
+
+  <div class="field">
+    <%= f.label :tymczasowe_haslo%><br />
+    <%= f.text_field :tymczasowe_haslo %>
+  </div>
+
+  <div class="field">
+    <%=f.label :grupy%>
+    <% for g in Grupa.all %>
+      <div class="check_box"><%= check_box_tag "osoba[grupa_ids][]", g.id, @osoba.grupy.include?(g) %>
+      <%=h g.nazwa %></div><br />
+    <% end %>
+  </div>
+
+  <%if @osoba.avatar%>
+    <div class="foto">
+      <%= image_tag @osoba.avatar.url(:medium) %>
+    </div>
+  <%end%>
+
+  <div class="field">
+    <%= f.label :avatar%>
+    <%= f.file_field :avatar %>
+  </div>
+
+
+
+  <div class="field">
+    <%= f.label :stanowisko%><br />
+    <%= f.text_field :stanowisko %>
+  </div>
+
+  <div class="actions">
+    <%= f.button t(:save), :class=>'btn btn-success' %>
+  </div>
+<% end %>

@@ -1,0 +1,29 @@
+<%= form_for(@osoba) do |f| %>
+  <% if @osoba.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@osoba.errors.count, "error") %> </h2>
+
+      <ul>
+      <% @osoba.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :password%><br />
+    <%= f.password_field :password %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation%><br />
+    <%= f.password_field :password_confirmation %>
+  </div>
+
+  <%= f.hidden_field :tymczasowe_haslo %>
+
+  <div class="actions">
+    <%= f.submit t(:save) %>
+  </div>
+<% end %>

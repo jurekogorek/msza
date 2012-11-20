@@ -1,0 +1,2 @@
+class HasloTymczasoweException < StandardError  
+end

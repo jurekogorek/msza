@@ -1,0 +1,69 @@
+<%= form_for(@osoba) do |f| %>
+  <% if @osoba.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@osoba.errors.count, "błąd") %> </h2>
+
+      <ul>
+      <% @osoba.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+
+  <div class="field">
+    <%= f.label :nazwisko%><br />
+    <%= f.text_field :nazwisko %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email%><br />
+    <%if defined?(disabled)%>
+      <%= f.text_field :email, :disabled=>'disabled' %>
+    <%else%>
+      <%= f.text_field :email %>
+    <%end%>
+  </div>
+  <div class="field">
+    <%= f.label :password%><br />
+    <%= f.password_field :password %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation%><br />
+    <%= f.password_field :password_confirmation %>
+  </div>
+
+  <%unless defined? disabled%>
+  <div class="field">
+    <%= f.label :grupy%>
+    <%= select_tag("grupy[]", options_for_select(Grupa.order(:nazwa).map{|m| [m.nazwa,m.id]}, @osoba.grupy.collect{ |s| s.id }),
+                   {:multiple=>true, :id => "grupy"}) %>
+  </div>
+  <%end%>
+
+  <%if @osoba.avatar%>
+    <div class="foto">
+      <%= image_tag @osoba.avatar.url(:medium) %>
+    </div>
+  <%end%>
+
+  <div class="field">
+    <%= f.label :avatar%>
+    <%= f.file_field :avatar %>
+  </div>
+
+ 
+
+ 
+
+  <div class="field">
+    <%= f.label :stanowisko%><br />
+    <%= f.text_field :stanowisko %>
+  </div>
+  <div class="actions">
+    <%= f.submit t(:save), :class=>'red_button' %>
+  </div>
+<% end %>

@@ -1,0 +1,27 @@
+<h1><%=Grupa.model_name.human.pluralize%></h1>
+
+<%= link_to t(:new), new_grupa_path %>
+
+<br />
+<table  class="table table-striped">
+  <tr>
+    <th><%=Grupa.human_attribute_name(:nazwa)%></th> 
+    <th><%=Grupa.human_attribute_name(:opis)%></th>
+    <th></th>
+    <th></th>
+    <%#*<th></th>%>
+  </tr>
+
+<% @grupy.each do |grupa| %>
+  <tr>
+    <td><%= grupa.nazwa %></td>    
+    <td><%= grupa.opis %></td>
+    <td><%= link_to t(:show), grupa %></td>
+    <td><%= link_to t(:edit), edit_grupa_path(grupa) %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+

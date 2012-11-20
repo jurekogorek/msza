@@ -1,0 +1,15 @@
+<%=form_tag sessions_path do%>
+  <%=hidden_field_tag :url_for, url_for() %>
+  <div class="field">    
+    <%=text_field_tag :email, params[:email], :placeholder=>Osoba.human_attribute_name(:email), :class=>'login_box'%>
+  </div>
+  <div class="field">    
+    <%=password_field_tag :password, params[:password], :placeholder=>Osoba.human_attribute_name(:password), :class=>'login_box'%>
+  </div>
+  <div class="field">
+    <div class="actions"><%=submit_tag 'loguj', :id=>'login', :class=>'btn'%></div>
+  </div>
+<div class="right clear">
+<%=link_to t(:zapomnialem_hasla), reset_hasla_path, :id=>'zapomnialem_hasla'%>
+  </div>
+<%end%>

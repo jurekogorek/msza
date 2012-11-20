@@ -1,0 +1,24 @@
+<article class="wizytowka">
+  <header>
+    <div class="foto">
+      <%= image_tag wizytowka.avatar.url(:medium) %>
+    </div>
+   
+  </header>
+  <section>
+    <div class="nazwisko">
+      <%= link_to "#{wizytowka.nazwisko}",wizytowka %>
+    </div>
+    <h5><%=wizytowka.email%></h5>
+
+  </section>
+  <div class="buttony">
+
+    <%if admin?%>
+      |<%= link_to t(:show), wizytowka %> |
+      <%= link_to t(:edit), edit_osoba_path(wizytowka) if can? :update, wizytowka%> |
+      <%= link_to t(:delete), wizytowka, method: :delete, data: { confirm: t(:confirm) } if can? :delete, wizytowka%>
+    <%end%>
+  </div>
+  <div class="clear"></div>
+</article>

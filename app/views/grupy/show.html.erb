@@ -1,0 +1,14 @@
+
+<h1>
+  <%= @grupa.nazwa %>
+</h1>
+
+<%if @grupa.opis%>
+<p>
+  <%= @grupa.opis %>
+</p>
+<%end%>
+
+<%= render :partial=>"osoby/wizytowka",:collection=>@grupa.osoby %>
+
+

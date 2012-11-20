@@ -1,0 +1,30 @@
+<h1><%=Osoba.model_name.human.pluralize%></h1>
+<div class="button_dodaj">
+  <%= link_to t(:new), new_osoba_path, :class=>'btn btn-success' if can? :create, Osoba%>
+</div>
+<br />
+
+<%#= render :partial=>"osoby/wizytowka",:collection=>@osoby %>
+
+<table  class="table table-striped">
+  <tr>
+    <th>Nazwisko</th>
+    <th>email</th>
+
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @osoby.each do |o| %>
+  <tr>
+    <td><%= link_to o.nazwisko,o %></td>
+    <td><%= o.email %></td>
+
+
+
+    <td><%= link_to 'Edit', edit_osoba_path(o) ,:class=>'btn btn-success'%></td>
+    <td><%= link_to t(:delete), o, method: :delete, data: { confirm: t(:confirm) } ,:class=>"btn btn-warning" if can? :delete,o%></td>
+
+  </tr>
+<% end %>
+</table>

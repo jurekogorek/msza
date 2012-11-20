@@ -1,0 +1,15 @@
+<div class="wizytowka" style="clear: both;background: none repeat scroll 0 0 #FFFFFF;border: 1px solid black;box-shadow: 3px 3px 7px -1px #000000;margin: 10px 0;width: 600px;">
+  <div class="header" style="float: left;padding: 5px;text-align: center;width: 110px;">
+    <div class="foto">
+      <%= image_tag wizytowka_do_newslettera.avatar.url(:medium) %>
+    </div>
+    <div class="nazwisko">
+      <%= link_to "#{wizytowka_do_newslettera.nazwisko}",wizytowka_do_newslettera%>
+    </div>
+  </div>
+  <div class="section" style="float: right;width: 475px;">
+    <h5><%wizytowka_do_newslettera.email%></h5>
+    <br /> <%= wizytowka_do_newslettera.instytucja %>
+    <br /> <%= wizytowka_do_newslettera.opis %>
+  </div>
+</div>

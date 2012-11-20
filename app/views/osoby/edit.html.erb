@@ -1,0 +1,12 @@
+<h1><%=t(:edit_osoba)%></h1>
+
+
+  <%unless "#{current_user.try(:id)}" == params[:id]%>
+  <%= render 'form' %>
+  <%else%>
+  <%= render 'form_rejestracja', :disabled=>true %>
+  <%end%>
+
+
+<%= link_to t(:back), osoby_path %>
+

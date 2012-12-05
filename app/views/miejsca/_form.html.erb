@@ -1,0 +1,80 @@
+<%= form_for(@miejsce, :html=>{:class => 'form-horizontal'}) do |f| %>
+  <% if @miejsce.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@miejsce.errors.count, "error") %> prohibited this miejsce from being saved:</h2>
+
+      <ul>
+      <% @miejsce.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="control-group user_fields">
+    <%= f.label :nazwa, :class=>'control-label' %>
+    <div class="controls">
+    <%= f.text_field :nazwa  , :class => 'input-xxlarge'%>
+    </div>
+  </div>
+  <div class="control-group user_fields">
+    <%= f.label :kraj_id , :class=>'control-label' %>
+    <div class="controls">
+    <%= f.select :kraj_id ,options_for_select(Kraj.order('nazwa').map{|k|[k.nazwa,k.id]},@miejsce.kraj_id),:include_blank=>true, :class => 'input-xxlarge'%>
+    </div>
+  </div>
+  <div class="control-group user_fields">
+    <%= f.label :miasto, :class=>'control-label' %>
+    <div class="controls">
+    <%= f.text_field :miasto  , :class => 'input-xxlarge'%>
+    </div>
+  </div>
+  <div class="control-group user_fields">
+    <%= f.label :kod, :class=>'control-label' %>
+    <div class="controls">
+    <%= f.text_field :kod  , :class => 'input-xxlarge'%>
+    </div>
+  </div>
+  <div class="control-group user_fields">
+    <%= f.label :ulica, :class=>'control-label' %>
+    <div class="controls">
+    <%= f.text_field :ulica  , :class => 'input-xxlarge'%>
+    </div>
+  </div>
+  <div class="control-group user_fields">
+    <%= f.label :zoom, :class=>'control-label' %>
+    <div class="controls">
+    <%= f.text_field :zoom %>
+    </div>
+  </div>
+  <div class="control-group user_fields">
+    <%= f.label :latitude, :class=>'control-label' %>
+    <div class="controls">
+    <%= f.text_field :latitude %>
+    </div>
+  </div>
+  <div class="control-group user_fields">
+    <%= f.label :longitude , :class=>'control-label'%>
+    <div class="controls">
+    <%= f.text_field :longitude %>
+    </div>
+  </div>
+  <div class="control-group user_fields">
+    <%= f.label :gmaps, :class=>'control-label' %>
+    <div class="controls">
+    <%= f.check_box :gmaps,:checked=>true %>
+    </div>
+  </div>
+
+
+  <div class="actions">
+    <%= f.button t(:save),:class=>"btn btn-success" %>
+  </div>
+
+  <div class="field">
+   
+    <%= text_field_tag :user_address %>
+  </div>
+<% end %>
+
+

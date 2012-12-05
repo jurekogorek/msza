@@ -1,0 +1,8 @@
+<h1>New miejsce</h1>
+
+<%= render 'form' %>
+<%= gmaps(:map_options => {:detect_location => true, :center_on_user => true, :auto_zoom => false, :zoom => 12, :auto_adjust => true, :libraries => ["places"]}, :markers => {:data => @json} ) %>
+<%= render 'miejsca/gmaps_marker' %>
+
+
+<%= link_to 'Back', miejsca_path %>

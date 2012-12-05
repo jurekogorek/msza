@@ -1,8 +1,12 @@
 Msza::Application.routes.draw do
 
+  resources :kraje
+
+  resources :miejsca
+
   resources :osoby
 
-  root :to => 'main#index'
+  root :to => 'miejsca#index'
 
   match "login" => "sessions#new"
   match "loguj" => "sessions#new"

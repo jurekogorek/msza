@@ -1,0 +1,112 @@
+<% content_for :scripts do %>
+  <script type="text/javascript" charset="utf-8">
+    var markersArray = [];
+    // On click, clear markers, place a new one, update coordinates in the form
+    Gmaps.map.callback = function() {
+      google.maps.event.addListener(Gmaps.map.serviceObject, 'click', function(event) {
+        clearOverlays();
+        placeMarker(event.latLng);
+        updateFormLocation(event.latLng);
+      });
+    };
+    // Update form attributes with given coordinates
+    function updateFormLocation(latLng) {
+      $('#miejsce_latitude').val(latLng.lat());
+      $('#miejsce_longitude').val(latLng.lng());
+      $('#miejsce_zoom').val(Gmaps.map.serviceObject.getZoom());
+    }
+    // Add a marker with an open infowindow
+    function placeMarker(latLng) {
+      var marker = new google.maps.Marker({
+        position: latLng,
+        map: Gmaps.map.serviceObject,
+        draggable: true
+      });
+      markersArray.push(marker);
+      // Set and open infowindow
+      var infowindow = new google.maps.InfoWindow({
+        content: '<div class="popup"><h2>Awesome!</h2><p>Drag me and adjust the zoom level.</p>'
+      });
+      infowindow.open(Gmaps.map.serviceObject,marker);
+      // Listen to drag & drop
+      google.maps.event.addListener(marker, 'dragend', function() {
+        updateFormLocation(this.getPosition());
+      });
+    }
+    // Removes the overlays from the map
+    function clearOverlays() {
+      if (markersArray) {
+        for (var i = 0; i < markersArray.length; i++ ) {
+          markersArray[i].setMap(null);
+        }
+      }
+      markersArray.length = 0;
+    }
+
+        var map = Gmaps.map.map
+    $(document).ready(initialize_gmaps_autocomplete_user_address());
+
+    function initialize_gmaps_autocomplete_user_address() {
+      var input = document.getElementById('user_address');
+      var defaultBounds = new google.maps.LatLngBounds(new google.maps.LatLng(42.71422,-4.222666), new google.maps.LatLng(51.179343,8.47412));
+      var autocomplete = new google.maps.places.Autocomplete(input);
+      autocomplete.setBounds(defaultBounds);
+      autocomplete.setTypes(['geocode']);
+
+     
+      google.maps.event.addListener(autocomplete, 'place_changed', function() {
+        <%#*infowindow.close();%>
+        <%#*marker.setVisible(false);%>
+   
+        input.className = '';
+        var place = autocomplete.getPlace();
+        if (!place.geometry) {
+          // Inform the user that the place was not found and return.
+          input.className = 'notfound';
+          return;
+        }
+
+        // If the place has a geometry, then present it on a map.
+        if (place.geometry.viewport) {
+          Gmaps.map.serviceObject.fitBounds(place.geometry.viewport);
+        } else {
+          Gmaps.map.serviceObject.setCenter(place.geometry.location);
+          Gmaps.map.serviceObject.setZoom(16);  // Why 17? Because it looks good.
+        }
+
+        <%#*var image = new google.maps.MarkerImage(%>
+        <%#*place.icon,%>
+        <%#*new google.maps.Size(71, 71),%>
+        <%#*new google.maps.Point(0, 0),%>
+        <%#*new google.maps.Point(17, 34),%>
+        <%#*new google.maps.Size(35, 35));%>
+        <%#*marker.setIcon(image);%>
+        <%#*marker.setPosition(place.geometry.location);%>
+
+        <%#*var address = '';%>
+        <%#*if (place.address_components) {%>
+          <%#*address = [%>
+            <%#*(place.address_components[0] && place.address_components[0].short_name || ''),%>
+            <%#*(place.address_components[1] && place.address_components[1].short_name || ''),%>
+            <%#*(place.address_components[2] && place.address_components[2].short_name || '')%>
+          <%#*].join(' ');%>
+        <%#*}%>
+
+        <%#*infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);%>
+        <%#*infowindow.open(map, marker);%>
+      });
+    }
+
+
+        $('form').keydown(function(e){
+            if (e.keyCode ==13){
+              e.preventDefault();
+              e.stopPropagation();
+
+            }
+
+          
+        });
+  
+  </script>
+<% end %>

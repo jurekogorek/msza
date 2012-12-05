@@ -3,10 +3,11 @@
 <head>
   <title><%=t(:tytul)%></title>
 
-  <%#= stylesheet_link_tag "application", :media => "all" %>
+  <%= stylesheet_link_tag "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= javascript_include_tag "jquery-1.7.1.min"%>
   <%= javascript_include_tag "bootstrap.min" %>
+  <%= stylesheet_link_tag "gmaps4rails"%>
   <%= stylesheet_link_tag "bootstrap.min", :media => "all" %>
   <%= stylesheet_link_tag "bootstrap-responsive.min", :media => "all" %>
   <%= csrf_meta_tags %>
@@ -22,7 +23,7 @@
 
 
     </div>
-
+<%= yield :scripts %>
 </body>
 </html>
 

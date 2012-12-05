@@ -1,0 +1,9 @@
+<h1>Editing miejsce</h1>
+
+<%= render 'form' %>
+<div class="miejsce">
+<%= gmaps(:map_options => {:auto_zoom=>false,:zoom=>@miejsce.zoom ? @miejsce.zoom : 10,:libraries => ["places"]}, :markers => { :data => @json}) %>
+<%= render 'miejsca/gmaps_marker' %>
+</div>
+<%= link_to 'Show', @miejsce %> |
+<%= link_to 'Back', miejsca_path %>

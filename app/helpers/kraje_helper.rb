@@ -1,0 +1,2 @@
+module KrajeHelper
+end

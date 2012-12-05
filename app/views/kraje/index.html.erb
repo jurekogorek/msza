@@ -1,0 +1,23 @@
+<h1>Listing kraje</h1>
+
+<table>
+  <tr>
+    <th>Nazwa</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @kraje.each do |kraj| %>
+  <tr>
+    <td><%= kraj.nazwa %></td>
+    <td><%= link_to 'Show', kraj %></td>
+    <td><%= link_to 'Edit', edit_kraj_path(kraj) %></td>
+    <td><%= link_to 'Destroy', kraj, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Kraj', new_kraj_path %>

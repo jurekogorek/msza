@@ -1,0 +1,2 @@
+module MiejscaHelper
+end

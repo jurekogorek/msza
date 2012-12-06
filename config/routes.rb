@@ -1,5 +1,7 @@
 Msza::Application.routes.draw do
 
+  resources :terminy
+
   resources :kraje
 
   resources :miejsca

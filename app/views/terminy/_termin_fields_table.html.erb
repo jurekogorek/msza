@@ -1,0 +1,20 @@
+
+<tr>
+  <td>
+   <%= f.hidden_field :id  %>
+  </td>
+  <td>
+   <%= f.select :dzien_id, options_for_select(Dzien.order(:id).map{|d| [d.nazwa,d.id]},f.object.dzien_id), {:include_blank=>true}, :class=>'span2'  %>
+  </td>
+  <td>
+    <%=f.text_field :godzina%>
+  </td>
+  <td>
+    <%=f.text_field :komentarz%>
+  </td>
+  <td>
+    <%=link_to_remove_fields 'tr', '- usuń termin'%>
+  </td>
+</tr>
+
+

@@ -18,3 +18,17 @@
 //= require gmaps4rails/gmaps4rails.mapquest
 //= require gmaps4rails/gmaps4rails.openlayers
 // require_tree .
+
+
+function add_fields(link, association, content) {
+  var new_id = new Date().getTime();
+  var regexp = new RegExp("new_" + association, "g")
+  $(link).before(content.replace(regexp, new_id));
+
+}
+function remove_fields(link, element) {
+  var v = confirm('Potwierdź chęć usunięcia');
+  if(v == true){
+    $(link).closest(element).remove();
+  }
+}

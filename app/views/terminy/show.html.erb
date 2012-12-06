@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Dzien:</b>
+  <%= @termin.dzien %>
+</p>
+
+<p>
+  <b>Godzina:</b>
+  <%= @termin.godzina %>
+</p>
+
+<p>
+  <b>Komentarz:</b>
+  <%= @termin.komentarz %>
+</p>
+
+
+<%= link_to 'Edit', edit_termin_path(@termin) %> |
+<%= link_to 'Back', terminy_path %>

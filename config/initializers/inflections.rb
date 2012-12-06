@@ -13,6 +13,8 @@
    inflect.irregular 'miejsce', 'miejsca'
    inflect.irregular 'klient', 'klienci'
     inflect.irregular 'kraj', 'kraje'
+    inflect.irregular 'termin', 'terminy'
+    inflect.irregular 'dzien', 'dni'
    inflect.irregular 'status', 'statusy'
    inflect.irregular 'produkt', 'produkty'
    inflect.irregular 'projekt', 'projekty'

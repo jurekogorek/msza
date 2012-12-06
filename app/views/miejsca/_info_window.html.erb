@@ -1,0 +1,17 @@
+<div style="min-height:200px;min-width:250px">
+  <%miejsce=info_window%>
+  <div>
+
+    <h4><%=  miejsce.nazwa %></h4>
+    <p>
+      <%if miejsce.kraj%>
+        <%= link_to miejsce.kraj.try(:nazwa), miejsce.kraj %><br />
+      <%end%>
+      <%= miejsce.adres %>
+    </p>
+    <h5>Terminy mszy:</h5>
+    <%miejsce.terminy.each do |termin|%>
+      <%= termin.dzien.nazwa %>:<%= termin.godzina %> <%=  termin.komentarz %>
+    <%end%>
+  </div>
+</div>

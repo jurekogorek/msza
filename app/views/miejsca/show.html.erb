@@ -12,6 +12,19 @@
   <b>Adres: </b><%= @miejsce.ulica %>, <%=@miejsce.kod%> <%=@miejsce.miasto%>
 </p>
 
+<p>
+  <b>
+    Terminy mszy:<br />
+  </b>
+  <%@miejsce.terminy.each do |t|%>
+    <%= t.try(:dzien).try(:nazwa) %>: <%=t.godzina%>
+    <%if t.komentarz and not t.komentarz.blank?%>
+    - <%=t.komentarz%>
+    <%end%>
+    <br />
+  <%end%>
+</p>
+
 
 
 <div class="miejsce">

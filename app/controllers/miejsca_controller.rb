@@ -3,7 +3,9 @@ class MiejscaController < ApplicationController
   # GET /miejsca.json
   def index
     @miejsca = Miejsce.all
-    @json = Miejsce.all.to_gmaps4rails
+    @json = Miejsce.all.to_gmaps4rails do |miejsce, marker|
+      marker.infowindow render_to_string(:partial => "miejsca/info_window", :object => miejsce)
+    end
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @miejsca }
@@ -59,6 +61,13 @@ class MiejscaController < ApplicationController
   # PUT /miejsca/1.json
   def update
     @miejsce = Miejsce.find(params[:id])
+
+    @miejsce.terminy.clear
+    params[:miejsce][:terminy_attributes].each do |t|
+       @miejsce.terminy.build(t[1])
+    end
+
+    params[:miejsce].delete(:terminy_attributes)
 
     respond_to do |format|
       if @miejsce.update_attributes(params[:miejsce])

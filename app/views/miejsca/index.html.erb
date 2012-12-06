@@ -1,4 +1,18 @@
-<%= gmaps(:map_options => {:detect_location => true, :center_on_user => true,:center_latitude=> 30.0,:center_longitude=> -30.0, :auto_zoom => true, :zoom => 3, :auto_adjust => false}, :markers => {:data => @json}) %>
+<%= gmaps(:map_options => {:detect_location => true, :center_on_user => true,:center_latitude=> 30.0,:center_longitude=> -30.0, :auto_zoom => true, :zoom => 3, :auto_adjust => false}, :markers => {:data => @json,:options => { :do_clustering => true}}) %>
+<%#= gmaps4rails(@json) %>
+<% content_for :scripts do %>
+<script type="text/javascript">
+  <%#*Gmaps.map.callback = function() {%>
+  <%#*for (var i = 0; i <  this.markers.length; ++i) {%>
+     <%#*google.maps.event.addListener(Gmaps.map.markers[i].serviceObject, 'click', function() {%>
+          <%#*position = this.getPosition();%>
+          <%#*Gmaps.map.serviceObject.setCenter(position);%>
+          <%#*Gmaps.map.serviceObject.setZoom(10);%>
+      <%#*});%>
+  <%#*}%>
+<%#*};%>
+</script>
+<%end%>
 
 <h1>Listing miejsca</h1>
 

@@ -1,0 +1,29 @@
+<%= form_for(@termin) do |f| %>
+  <% if @termin.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@termin.errors.count, "error") %> prohibited this termin from being saved:</h2>
+
+      <ul>
+      <% @termin.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :dzien %><br />
+    <%= f.text_field :dzien %>
+  </div>
+  <div class="field">
+    <%= f.label :godzina %><br />
+    <%= f.text_field :godzina %>
+  </div>
+  <div class="field">
+    <%= f.label :komentarz %><br />
+    <%= f.text_field :komentarz %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

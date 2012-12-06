@@ -1,0 +1,27 @@
+<h1>Listing terminy</h1>
+
+<table>
+  <tr>
+    <th>Dzien</th>
+    <th>Godzina</th>
+    <th>Komentarz</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @terminy.each do |termin| %>
+  <tr>
+    <td><%= termin.dzien %></td>
+    <td><%= termin.godzina %></td>
+    <td><%= termin.komentarz %></td>
+    <td><%= link_to 'Show', termin %></td>
+    <td><%= link_to 'Edit', edit_termin_path(termin) %></td>
+    <td><%= link_to 'Destroy', termin, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Termin', new_termin_path %>

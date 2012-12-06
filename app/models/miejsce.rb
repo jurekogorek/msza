@@ -1,11 +1,30 @@
 class Miejsce < ActiveRecord::Base
-  attr_accessible :gmaps, :latitude, :longitude, :nazwa, :zoom,:miasto, :kod, :ulica, :kraj_id,:kraj
+  attr_accessible :gmaps, :latitude, :longitude, :nazwa, :zoom,:miasto, :kod, :ulica, :kraj_id,:kraj,:terminy_attributes
   acts_as_gmappable
 
   belongs_to :kraj
+  has_many :terminy, :order=>"dzien_id"
+
+  accepts_nested_attributes_for :terminy, :allow_destroy => true
 
   def gmaps4rails_address
-    #describe how to retrieve the address from your model, if you use directly a db column, you can dry your code, see wiki
-#      "#{self.street}, #{self.city}, #{self.country}"
+
+  end
+
+#  def gmaps4rails_marker_picture
+#  {
+#   "picture" => "rails.png",
+#   "width" => 40,
+#   "height" => 40,
+#   "marker_anchor" => [ 5, 10],
+#  }
+#  end
+  def gmaps4rails_title
+      "#{nazwa}"
+  end
+
+
+  def adres
+    "#{ulica}, #{kod} #{miasto}"
   end
 end

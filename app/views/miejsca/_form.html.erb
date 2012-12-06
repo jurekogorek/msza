@@ -66,10 +66,22 @@
     </div>
   </div>
 
-
-  <div class="actions">
-    <%= f.button t(:save),:class=>"btn btn-success" %>
+  <div class="control-group">
+    <%=f.label "Terminy mszy", :class => 'control-label'%>
+    <div class="controls">
+      <table  class="table table-striped">
+        <tr><th>Dzien</th><th>Godziny</th><th>Komentarz</th></tr>
+        <%=f.fields_for :terminy, :include_id=>false do |f2|%>
+          <%=render 'terminy/termin_fields_table', :f=>f2 %>
+        <%end%>
+     
+      </table>
+       <%=link_to_add_fields_table '+ dodaj termin', f, :terminy%>
+    </div>
   </div>
+    <div class="actions">
+      <%= f.button t(:save),:class=>"btn btn-success" %>
+    </div>
 
   <div class="field">
    

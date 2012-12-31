@@ -1,10 +1,12 @@
 class Grupa < ActiveRecord::Base
-  attr_accessible :nazwa, :opis,:przedstawiciel,:docelowa,:kolejnosc
+  attr_accessible :nazwa, :opis,:przedstawiciel,:docelowa,:kolejnosc,:avatar
   has_and_belongs_to_many :osoby,:order=>:nazwisko
   has_and_belongs_to_many :aktualnosci
   has_and_belongs_to_many :watki
   has_and_belongs_to_many :galerie
-  
+  has_and_belongs_to_many  :miejsca
+
+  has_attached_file :avatar, :styles => { :medium => "100x100>", :thumb => "30x30>" }
   validates :nazwa, :presence=>true
   validates :nazwa, :length => { :in => 4..250 }
 

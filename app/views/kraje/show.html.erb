@@ -1,10 +1,31 @@
 <p id="notice"><%= notice %></p>
+<%= render "layouts/dni",:kontroler=>"kraje",:akcja=>"show",:id=>@kraj.id %>
 
-<p>
-  <b>Nazwa:</b>
-  <%= @kraj.nazwa %>
-</p>
+<%= gmaps(:map_options => {  :auto_adjust => false,:zoom=>5}, :markers => {:data => @json,:options => { :do_clustering => true}}) %>
+<%#= gmaps4rails(@json) %>
 
+<%#=form_tag do%>
+  <%#= text_field_tag :user_address %>
+<%#end%>
+
+<% content_for :scripts do %>
+  <script type="text/javascript" charset="utf-8">
+   Gmaps.map.callback = function() {
+
+      var input = document.getElementById('user_address');
+      var country = "<%=@kraj.nazwa%>";
+      var geocoder=new google.maps.Geocoder();;
+
+      geocoder.geocode( {'address' : country}, function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+          Gmaps.map.serviceObject.setCenter(results[0].geometry.location);
+          Gmaps.map.serviceObject.fitBounds(results[0].geometry.viewport);
+        }
+      });
+    }
+  </script>
+<%end%>
+<%= render @kraj %>
 
 <%= link_to 'Edit', edit_kraj_path(@kraj) %> |
 <%= link_to 'Back', kraje_path %>

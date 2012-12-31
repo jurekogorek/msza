@@ -1,3 +1,7 @@
+<h1>Msza Trydencka</h1>
+<h3>Na świecie</h3>
+<%= render "layouts/dni",:kontroler=>"miejsca",:akcja=>"index" %>
+
 <%= gmaps(:map_options => {:detect_location => true, :center_on_user => true,:center_latitude=> 30.0,:center_longitude=> -30.0, :auto_zoom => true, :zoom => 3, :auto_adjust => false}, :markers => {:data => @json,:options => { :do_clustering => true}}) %>
 <%#= gmaps4rails(@json) %>
 <% content_for :scripts do %>
@@ -14,36 +18,14 @@
 </script>
 <%end%>
 
-<h1>Listing miejsca</h1>
-
-<table  class="table table-striped">
-  <tr>
-    <th>Nazwa</th>
-    <th>Latitude</th>
-    <th>Longitude</th>
-    <th>Gmaps</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @miejsca.each do |miejsce| %>
-  <tr>
-    <td><%= miejsce.nazwa %></td>
-    <td><%= miejsce.latitude %></td>
-    <td><%= miejsce.longitude %></td>
-    <td><%= miejsce.gmaps %></td>
-    <td><%= link_to 'Show', miejsce %></td>
-    <td><%= link_to 'Edit', edit_miejsce_path(miejsce) %></td>
-    <td><%= link_to 'Destroy', miejsce, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
 <%= link_to 'New Miejsce', new_miejsce_path %>
 
-
 <br />
+
+<%Kraj.order(:nazwa).each do |k|%>
+
+  <%=render k%>
+
+<%end%>
+
 

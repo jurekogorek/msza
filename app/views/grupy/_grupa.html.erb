@@ -1,0 +1,29 @@
+<h3><%=link_to grupa.nazwa,grupa%></h3>
+<table  class="table table-striped">
+  <tr>
+    <th>Miejsce</th>
+    <th>Adres</th>
+    <th>Godziny</th>
+    <th></th>
+
+  </tr>
+
+<% grupa.miejsca.each do |miejsce| %>
+  <tr>
+    <td><%=link_to miejsce.nazwa,miejsce %></td>
+    <td><%= miejsce.ulica %>, <%=miejsce.kod%> <%=miejsce.miasto%></td>
+    <td>
+       <%miejsce.terminy.each do |t|%>
+          <%= t.try(:dzien).try(:nazwa) %>: <%=t.godzina%>
+          <%=", " if t!=miejsce.terminy.last%>
+       <%end%>
+    </td>
+    <td><%=link_to "Pokaż",miejsce %></td>
+    <%if can? :edit, miejsce%>
+    <td><%= link_to 'Edit', edit_miejsce_path(miejsce) %></td>
+    <td><%= link_to 'Destroy', miejsce, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <%end%>
+  </tr>
+<% end %>
+</table>
+

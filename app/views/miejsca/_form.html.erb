@@ -20,7 +20,7 @@
   <div class="control-group user_fields">
     <%= f.label :kraj_id , :class=>'control-label' %>
     <div class="controls">
-    <%= f.select :kraj_id ,options_for_select(Kraj.order('nazwa').map{|k|[k.nazwa,k.id]},@miejsce.kraj_id),:include_blank=>true, :class => 'input-xxlarge'%>
+    <%= f.select :kraj_id ,options_for_select(Kraj.order('nazwa').map{|k|[k.nazwa,k.id]},@miejsce.kraj_id), :class => 'input-xxlarge'%>
     </div>
   </div>
   <div class="control-group user_fields">

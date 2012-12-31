@@ -24,7 +24,10 @@
     <br />
   <%end%>
 </p>
-
+<p>
+  <b>Odprawiana przez:</b>
+  <%= link_to @miejsce.try(:grupa).try(:nazwa),@miejsce.try(:grupa) %>
+</p>
 
 
 <div class="miejsce">

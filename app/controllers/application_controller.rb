@@ -9,11 +9,11 @@ class ApplicationController < ActionController::Base
       %(#{html_tag}).html_safe
     end
   end
-
+  helper_method :current_user
   def current_user
     @current_user ||= Osoba.find(session[:user_id]) if session[:user_id]
   end
-  helper_method :current_user
+  
 
   rescue_from CanCan::AccessDenied do |exception|
     flash[:error] = t (:access_denied)

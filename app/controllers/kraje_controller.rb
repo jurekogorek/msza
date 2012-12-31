@@ -14,7 +14,10 @@ class KrajeController < ApplicationController
   # GET /kraje/1.json
   def show
     @kraj = Kraj.find(params[:id])
-
+    @miejsca = params[:dzien]? Miejsce.w_dniu_dla_kraju(params[:dzien],@kraj) : Miejsce.where(:kraj_id=>params[:id]).order("nazwa")
+    @json = @miejsca.to_gmaps4rails do |miejsce, marker|
+      marker.infowindow render_to_string(:partial => "miejsca/info_window", :object => miejsce)
+    end
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @kraj }

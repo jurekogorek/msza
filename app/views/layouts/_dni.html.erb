@@ -1,0 +1,11 @@
+<%id = (defined? id) ? id : ''%>
+<%=link_to "Wszystkie",{:controller=>kontroler,:action=>akcja,:id=>id},:class=>"btn btn-success"%>
+<%=link_to "Dzisiaj",{:controller=>kontroler,:action=>akcja,:id=>id,:dzien=>Dzien.dzisiaj},:class=>"btn btn-success"%>
+<%=link_to "Jutro",{:controller=>kontroler,:action=>akcja,:id=>id,:dzien=>Dzien.jutro},:class=>"btn btn-success"%>
+<br />
+<br />
+<%Dzien.order(:id).each do |d|%>
+  <%=link_to "#{d.nazwa}",{:controller=>kontroler,:action=>akcja,:id=>id,:dzien=>d.id},:class=>"btn btn-success"%>
+<%end%>
+<br />
+<br />

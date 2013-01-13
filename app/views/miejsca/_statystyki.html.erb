@@ -1,0 +1,11 @@
+<%
+    stat_liczba_miejsc = @miejsca.count
+    stat_liczba_terminow  = Termin.where(:miejsce_id=>@miejsca.map{|m| m.id}).count
+%>
+<div class="row">
+  <div class="span1">Miejsc:</div><div class="span"><%=stat_liczba_miejsc%> </div>
+</div>
+<div class="row">
+  <div class="span1">Terminów:</div><div class="span"><%=stat_liczba_terminow%> </div>
+</div>
+<br />

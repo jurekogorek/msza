@@ -7,8 +7,19 @@
     <th></th>
 
   </tr>
+<%miejsca= grupa.miejsca
+  kraj = miejsca.first.try(:kraj)
+%>
+  <%if kraj%>
+  <tr><td><h4><%=link_to kraj.try(:nazwa), kraj%></h4></td><td></td><td></td><td></td></tr>
+  <%end%>
+  <% miejsca.each do |miejsce| %>
 
-<% grupa.miejsca.each do |miejsce| %>
+  <%if miejsce.kraj_id != kraj.id%>
+    <%kraj = miejsce.kraj%>
+    <tr><td><h4><%=link_to kraj.try(:nazwa), kraj%></h4></td><td></td><td></td><td></td></tr>
+  <%end%>
+
   <tr>
     <td><%=link_to miejsce.nazwa,miejsce %></td>
     <td><%= miejsce.ulica %>, <%=miejsce.kod%> <%=miejsce.miasto%></td>

@@ -1,4 +1,11 @@
 <p id="notice"><%= notice %></p>
+<h2>
+  <%= @kraj.nazwa %>
+</h2>
+<h3>
+  Msze Trydenckie
+</h3>
+<%= render "miejsca/statystyki" %>
 <%= render "layouts/dni",:kontroler=>"kraje",:akcja=>"show",:id=>@kraj.id %>
 
 <%= gmaps(:map_options => {  :auto_adjust => false,:zoom=>5}, :markers => {:data => @json,:options => { :do_clustering => true}}) %>

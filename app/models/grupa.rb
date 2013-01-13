@@ -4,7 +4,7 @@ class Grupa < ActiveRecord::Base
   has_and_belongs_to_many :aktualnosci
   has_and_belongs_to_many :watki
   has_and_belongs_to_many :galerie
-  has_and_belongs_to_many  :miejsca
+  has_and_belongs_to_many  :miejsca,:order=>"kraj_id ASC"
 
   has_attached_file :avatar, :styles => { :medium => "100x100>", :thumb => "30x30>" }
   validates :nazwa, :presence=>true

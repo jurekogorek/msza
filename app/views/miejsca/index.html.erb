@@ -1,5 +1,10 @@
 <h1>Msza Trydencka</h1>
 <h3>Na świecie</h3>
+<%if params[:dzien]%>
+<h4>Dzień: <%=Dzien.where(:id=>params[:dzien]).first.nazwa%></h4>
+<%end%>
+<%= render "miejsca/statystyki" %>
+
 <%= render "layouts/dni",:kontroler=>"miejsca",:akcja=>"index" %>
 
 <%= gmaps(:map_options => {:detect_location => true, :center_on_user => true,:center_latitude=> 30.0,:center_longitude=> -30.0, :auto_zoom => true, :zoom => 3, :auto_adjust => false}, :markers => {:data => @json,:options => { :do_clustering => true}}) %>
@@ -18,7 +23,7 @@
 </script>
 <%end%>
 
-<%= link_to 'New Miejsce', new_miejsce_path %>
+<%= link_to 'New Miejsce', new_miejsce_path if can? :new, Miejsce %>
 
 <br />
 

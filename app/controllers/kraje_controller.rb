@@ -1,4 +1,5 @@
 class KrajeController < ApplicationController
+  load_and_authorize_resource
   # GET /kraje
   # GET /kraje.json
   def index

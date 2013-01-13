@@ -1,7 +1,6 @@
 <p id="notice"><%= notice %></p>
 
 <h2>
-  <b>Nazwa:</b>
   <%= @miejsce.nazwa %>
 </h2>
 
@@ -33,5 +32,4 @@
 <div class="miejsce">
 <%= gmaps(:map_options => {:auto_zoom=>false,:zoom=>@miejsce.zoom ? @miejsce.zoom : 10}, :markers => { :data => @json}) %>
 </div>
-<%= link_to 'Edit', edit_miejsce_path(@miejsce) %> |
-<%= link_to 'Back', miejsca_path %>
+<%= link_to 'Edit', edit_miejsce_path(@miejsce) if can? :edit , @miejsce %> 

@@ -1,4 +1,5 @@
 class TerminyController < ApplicationController
+  load_and_authorize_resource
   # GET /terminy
   # GET /terminy.json
   def index

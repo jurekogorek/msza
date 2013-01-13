@@ -7,7 +7,7 @@
     <th></th>
 
   </tr>
-<%miejsca= grupa.miejsca
+<%miejsca= grupa.miejsca.includes(:terminy)
   kraj = miejsca.first.try(:kraj)
 %>
   <%if kraj%>

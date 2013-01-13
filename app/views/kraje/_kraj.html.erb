@@ -8,7 +8,7 @@
 
   </tr>
 
-<% kraj.miejsca.each do |miejsce| %>
+<% kraj.miejsca.includes(:terminy).each do |miejsce| %>
   <tr>
     <td><%=link_to miejsce.nazwa,miejsce %></td>
     <td><%= miejsce.ulica %>, <%=miejsce.kod%> <%=miejsce.miasto%></td>

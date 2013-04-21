@@ -1,9 +1,4 @@
-<h1>Msza Trydencka</h1>
-<h3>Na świecie</h3>
-<%if params[:dzien]%>
-<h4>Dzień: <%=Dzien.where(:id=>params[:dzien]).first.nazwa%></h4>
-<%end%>
-<%= render "miejsca/statystyki" %>
+<h2>Msza Trydencka na świecie</h2>
 
 <%= render "layouts/dni",:kontroler=>"miejsca",:akcja=>"index" %>
 
@@ -27,7 +22,7 @@
 
 <br />
 
-<%Kraj.order(:nazwa).each do |k|%>
+<%Kraj.wszystkie.each do |k|%>
 
   <%=render k%>
 

@@ -15,7 +15,7 @@
   <b>
     Terminy mszy:<br />
   </b>
-  <%@miejsce.terminy.each do |t|%>
+  <%@miejsce.terminy.includes(:dzien).each do |t|%>
     <%= t.try(:dzien).try(:nazwa) %>: <%=t.godzina%>
     <%if t.komentarz and not t.komentarz.blank?%>
     - <%=t.komentarz%>

@@ -3,7 +3,7 @@ class MiejscaController < ApplicationController
   # GET /miejsca
   # GET /miejsca.json
   def index
-    @miejsca = params[:dzien]? Miejsce.w_dniu(params[:dzien]) : Miejsce.all
+    @miejsca = params[:dzien]? Miejsce.w_dniu(params[:dzien]) : Miejsce.includes(:grupy,:kraj,:terminy=>[:dzien])
     
     @json = @miejsca.to_gmaps4rails do |miejsce, marker|
       marker.infowindow render_to_string(:partial => "miejsca/info_window", :object => miejsce)

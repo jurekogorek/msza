@@ -38,12 +38,12 @@ class Miejsce < ActiveRecord::Base
   end
 
   def self.w_dniu_dla_kraju(dzien,kraj)
-    Miejsce.joins(:terminy).where(["terminy.dzien_id=? and kraj_id=?",dzien,kraj.id]).uniq
+    Miejsce.joins(:terminy).where(["terminy.dzien_id=? and kraj_id=?",dzien,kraj.id]).includes(:grupy,:kraj,:terminy=>[:dzien]).uniq
   end
   def self.w_dniu_dla_grupy(dzien,grupa)
-    Miejsce.joins(:terminy,:grupy).where(["terminy.dzien_id=? and grupy.id=?",dzien,grupa.id]).uniq
+    Miejsce.joins(:terminy,:grupy).where(["terminy.dzien_id=? and grupy.id=?",dzien,grupa.id]).includes(:kraj,:grupy,:terminy=>[:dzien]).uniq
   end
   def self.w_dniu(dzien)
-    Miejsce.joins(:terminy).where(["terminy.dzien_id=?",dzien]).uniq
+    Miejsce.joins(:terminy).where(["terminy.dzien_id=?",dzien]).includes(:grupy,:kraj,:terminy=>[:dzien]).uniq
   end
 end

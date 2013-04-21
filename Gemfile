@@ -22,7 +22,10 @@ end
 
 gem 'jquery-rails'
 gem 'will_paginate'
+gem 'ruby-prof', group: :test
+gem 'test-unit', group: :test
 
+gem 'bullet', group: :development
 gem 'cancan'
 gem 'gmaps4rails',"1.5.6"
 gem "paperclip", "~> 3.0"

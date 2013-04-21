@@ -1,11 +1,31 @@
+<div class="row">
 <%id = (defined? id) ? id : ''%>
-<%=link_to "Wszystkie dni",{:controller=>kontroler,:action=>akcja,:id=>id},:class=>"btn btn-success"%>
-<%=link_to "Dzisiaj",{:controller=>kontroler,:action=>akcja,:id=>id,:dzien=>Dzien.dzisiaj},:class=>"btn btn-success"%>
-<%=link_to "Jutro",{:controller=>kontroler,:action=>akcja,:id=>id,:dzien=>Dzien.jutro},:class=>"btn btn-success"%>
-<br />
-<br />
+<div class="span">
+	<h4>Wybierz dzień:</h4>
+</div>
+<div class="span3">
+<ul class="nav nav-pills ">
+	<li class="<%="active" unless params[:dzien]%>">
+		<%=link_to "Wszystkie dni",{:controller=>kontroler,:action=>akcja,:id=>id},:class=>""%>
+	</li>
+	<li class="<%="active" if Dzien.dzisiaj==params[:dzien].try(:to_i)%>">	
+		<%=link_to "Dzisiaj",{:controller=>kontroler,:action=>akcja,:id=>id,:dzien=>Dzien.dzisiaj},:class=>""%>
+	</li>
+	<li class="<%="active" if Dzien.jutro==params[:dzien].try(:to_i)%>">
+		<%=link_to "Jutro",{:controller=>kontroler,:action=>akcja,:id=>id,:dzien=>Dzien.jutro},:class=>""%>
+	</li>
+</ul>	
+</div>
+<div class="span5">
+<ul class="nav nav-pills">
 <%Dzien.order(:id).each do |d|%>
-  <%=link_to "#{d.nazwa}",{:controller=>kontroler,:action=>akcja,:id=>id,:dzien=>d.id},:class=>"btn btn-info"%>
+	<li class="<%="active" if d.id==params[:dzien].try(:to_i)%>">
+  <%=link_to "#{d.nazwa}",{:controller=>kontroler,:action=>akcja,:id=>id,:dzien=>d.id},:class=>""%>
+  </li>
 <%end%>
-<br />
-<br />
+
+</ul>
+</div>
+</div>
+
+<%= render "miejsca/statystyki" %>

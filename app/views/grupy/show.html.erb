@@ -1,23 +1,7 @@
+<h2>
+  <%= @grupa.nazwa %> - Msze Trydenckie
+</h2>
 
-<h1>
-  <%= @grupa.nazwa %>
-</h1>
-
-
-<div class="foto">
-      <%= image_tag @grupa.avatar.url(:medium) %>
-    </div>
-<%if @grupa.opis%>
-<p>
-  <%= @grupa.opis %>
-</p>
-<%end%>
-
-<h5>Zarejestrowani użytkownicy:</h5>
-<%= render :partial=>"osoby/wizytowka_small",:collection=>@grupa.osoby %>
-
-<br />
-<%= render "miejsca/statystyki" %>
 <%= render "layouts/dni",:kontroler=>"grupy",:akcja=>"show",:id=>@grupa.id %>
  
 <%= gmaps(:map_options => {:detect_location => true, :center_on_user => true,:center_latitude=> 30.0,:center_longitude=> -30.0, :auto_zoom => true, :zoom => 3, :auto_adjust => false}, :markers => {:data => @json,:options => { :do_clustering => true}}) %>

@@ -1,4 +1,28 @@
-<h3><%=link_to grupa.nazwa,grupa%></h3>
+<br/>
+<div class="row">
+	<div class="span">
+		<div class="foto">
+      <%= image_tag grupa.avatar.url(:medium) %>
+    </div>
+	</div>
+	<div class="span7">
+		<h3><%=link_to grupa.nazwa,grupa%></h3>
+
+		<%if grupa.opis%>
+			<p>
+  			<%= grupa.opis %>
+			</p>
+		<%end%>
+	</div>
+</div>
+<p><b>Zarejestrowani użytkownicy: </b>
+<%grupa.osoby.each do |o|%>
+	<%= render :partial=>"osoby/wizytowka_small",:collection=>grupa.osoby %>
+	<%="," if o != grupa.osoby.last%>
+<%end%>
+</p>
+<br />
+<h3>Miejsca celebracji:</h3>
 <table  class="table table-striped">
   <tr>
     <th>Miejsce</th>
@@ -7,7 +31,7 @@
     <th></th>
 
   </tr>
-<%miejsca= grupa.miejsca.includes(:terminy)
+	<%miejsca= grupa.miejsca.includes(:grupy,:kraj,:terminy=>[:dzien])
   kraj = miejsca.first.try(:kraj)
 %>
   <%if kraj%>

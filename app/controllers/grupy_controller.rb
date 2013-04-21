@@ -15,7 +15,7 @@ class GrupyController < ApplicationController
   # GET /grupy/1.json
   def show
     @grupa = Grupa.find(params[:id])
-    @miejsca = params[:dzien]? Miejsce.w_dniu_dla_grupy(params[:dzien],@grupa) : @grupa.miejsca.order("kraj_id, nazwa")
+    @miejsca = params[:dzien]? Miejsce.w_dniu_dla_grupy(params[:dzien],@grupa) : @grupa.miejsca.order("kraj_id, nazwa").includes(:kraj,:grupy,:terminy=>[:dzien])
     @json = @miejsca.to_gmaps4rails do |miejsce, marker|
       marker.infowindow render_to_string(:partial => "miejsca/info_window", :object => miejsce)
     end

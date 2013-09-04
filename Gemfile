@@ -29,7 +29,8 @@ gem 'bullet', group: :development
 gem 'cancan'
 gem 'gmaps4rails',"1.5.6"
 gem "paperclip", "~> 3.0"
-gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'bcrypt-ruby', '~> 3.0.0'             
+gem 'thin'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
